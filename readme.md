@@ -21,9 +21,8 @@ angular.module('app', ['ambersive.datalist']);
 
 ```sh
 
-<datalist rest-url="URLGOES HERE"></datalist>
+<datalist rest-url="RESTFUL URL GOES HERE"></datalist>
 
-});
 ```
 
 License
