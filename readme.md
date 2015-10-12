@@ -35,6 +35,8 @@ Please notice that the rest-url result should be like the following. Otherwise t
 
 ```
 
+### Settings / Options
+
 The following parameter can be added to the directive:
 
 * unique-name (optional -name for the broadcast event)
