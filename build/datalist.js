@@ -95,8 +95,6 @@
             Datalist.controller = ['$rootScope','$scope','$controller','$datalistSettings','RestSrv','HelperSrv',
                 function ($rootScope,$scope,$controller,$datalistSettings,RestSrv,HelperSrv) {
 
-
-
                     // Variables
 
                     $scope.templatePath         = $datalistSettings.templatePath;
@@ -135,14 +133,13 @@
                     // Functions
 
                     var parseResult = function(result){
+
                         if(result.data.total !== undefined && angular.isNumber(result.data.total)){
                             $scope.total = result.data.total;
-
                             $scope.pages = Math.ceil($scope.total/$scope.entriesPerPage);
-
                         }
 
-                        if(result.data.entries !== undefined){
+                        if(result.data.entries !== undefined && angular.isArray(result.data.entries)){
                             $scope.data = result.data.entries;
 
                             var entries = $scope.data.length;
@@ -153,7 +150,6 @@
                                     $scope.data[entry].isSelected = false;
                                 }
                             }
-
 
                         } else {
                             $log.warn('ambersive.datalist: Json result doesn`t fit the datalist pattern {"total":0,"entries":[]}');
@@ -301,7 +297,7 @@
                                 $scope.uiRouterAvailable = true;
                             }
                         } catch(err){
-                            $log.log('no');
+
                         }
 
                         if($scope.restUrl !== undefined && $scope.restUrl !== ''){
