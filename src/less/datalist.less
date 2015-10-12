@@ -1,0 +1,30 @@
+.datalist_container {
+  .datalist_header {
+
+  }
+  .datalist_body {
+    > ul {
+      list-style: none;
+      padding:0;
+      margin:0;
+      > li {
+        position: relative;
+        list-style: none;
+        padding:10px;
+        margin:0;
+        border-bottom:1px solid #ddd;
+
+        &.header {
+          padding:10px 10px 4px;
+        }
+
+        .btn-group {
+          position: absolute;
+          right: 20px;
+          top: 3px;
+        }
+
+      }
+    }
+  }
+}

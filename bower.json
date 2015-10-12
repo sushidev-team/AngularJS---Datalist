@@ -1,0 +1,31 @@
+{
+  "name": "ambersive-datalist",
+  "version": "0.0.1",
+  "authors": [
+    "Manuel Ihl <manuel.ihl@ambersive.com>"
+  ],
+  "description": "This module offers a flexible datalist directive with some additional services.",
+  "main": "build/auth.js",
+  "keywords": [
+    "AngularJS",
+    "Angular",
+    "Datalist",
+    "List",
+    "List of Data"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:AMBERSIVE/AngularJS---Datalist.git"
+  },
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "*",
+    "ambersive-rest": "*",
+    "ambersive-bower": "ambersive-helper#*"
+  },
+  "license": "MIT",
+  "homepage": "http://www.ambersive.com"
+}
