@@ -1,11 +1,11 @@
 {
   "name": "ambersive-datalist",
-  "version": "0.0.1.1",
+  "version": "0.0.1.2",
   "authors": [
     "Manuel Ihl <manuel.ihl@ambersive.com>"
   ],
   "description": "This module offers a flexible datalist directive with some additional services.",
-  "main": "build/auth.js",
+  "main": "build/datalist.js",
   "keywords": [
     "AngularJS",
     "Angular",
