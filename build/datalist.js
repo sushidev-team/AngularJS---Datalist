@@ -19,7 +19,7 @@
 
     angular.module('ambersive.datalist').provider('$datalistSettings',[function(){
         var standardTemplatePath     =  'src/views/datalist.default.html',
-            standardEntriesValue     =  'entries';
+            standardEntriesValue     =  'entries',
             standardTitleValue       =  'title',
             standardIdentityValue     =  'id',
             standardEntriesPerPage   = 25,
