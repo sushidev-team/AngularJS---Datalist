@@ -19,6 +19,7 @@
 
     angular.module('ambersive.datalist').provider('$datalistSettings',[function(){
         var standardTemplatePath     =  'src/views/datalist.default.html',
+            standardEntriesValue     =  'entries';
             standardTitleValue       =  'title',
             standardIdentityValue     =  'id',
             standardEntriesPerPage   = 25,
@@ -34,16 +35,23 @@
                 if(angular.isNumber(value)){
                     standardEntriesPerPage = value;
                 }
+            },
+            setEntriesValue       = function(value){
+                standardEntriesValue = value;
             };
 
         return {
             setTemplatePath:setTemplatePath,
+            setTitleValue: setTitleValue,
+            setEntriesPerPage: setEntriesPerPage,
+            setEntriesValue:setEntriesValue,
             $get: function () {
                 return {
                     templatePath:standardTemplatePath,
                     titleValue:standardTitleValue,
                     identityValue:standardIdentityValue,
-                    entriesPerPage:standardEntriesPerPage
+                    entriesPerPage:standardEntriesPerPage,
+                    entriesValue:standardEntriesValue,
                 };
             }
         };
@@ -139,8 +147,10 @@
                             $scope.pages = Math.ceil($scope.total/$scope.entriesPerPage);
                         }
 
-                        if(result.data.entries !== undefined && angular.isArray(result.data.entries)){
-                            $scope.data = result.data.entries;
+                        var entriesValue = $datalistSettings.entriesValue;
+
+                        if(result.data[entriesValue] !== undefined && angular.isArray(result.data[entriesValue])){
+                            $scope.data = result.data[entriesValue];
 
                             var entries = $scope.data.length;
                             for(var entry=0;entry<entries;entry++){
@@ -152,7 +162,7 @@
                             }
 
                         } else {
-                            $log.warn('ambersive.datalist: Json result doesn`t fit the datalist pattern {"total":0,"entries":[]}');
+                            $log.warn('ambersive.datalist: Json result doesn`t fit the datalist pattern {"total":0,"'+entriesValue+'":[]}');
                         }
                     };
 
