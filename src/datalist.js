@@ -96,6 +96,7 @@
                 titleValue:'@',
                 identityValue:'@',
                 entriesPerPage:'@',
+                entriesValue:'@',
                 identify:'@',
                 detailRoute:'@'
             };
@@ -138,6 +139,10 @@
                         $scope.entriesPerPage = parseInt($scope.entriesPerPage);
                     }
 
+                    if($scope.entriesValue === undefined || $scope.entriesValue === ''){
+                        $scope.entriesValue = $datalistSettings.entriesValue;
+                    }
+
                     // Functions
 
                     var parseResult = function(result){
@@ -147,7 +152,7 @@
                             $scope.pages = Math.ceil($scope.total/$scope.entriesPerPage);
                         }
 
-                        var entriesValue = $datalistSettings.entriesValue;
+                        var entriesValue = $scope.entriesValue;
 
                         if(result.data[entriesValue] !== undefined && angular.isArray(result.data[entriesValue])){
                             $scope.data = result.data[entriesValue];
