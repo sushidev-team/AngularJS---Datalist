@@ -286,6 +286,8 @@
                                 }, function (result) {
                                     if(result.status === 200){
                                         $scope.init();
+                                        arrIdenityValues = [];
+                                        $scope.selectedData = arrIdenityValues;
                                     }
                                 });
                             };
