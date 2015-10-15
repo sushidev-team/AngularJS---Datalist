@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-sm-4 col-xs-4">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" ng-if="uiRouterAvailable === true" ui-sref="{{detailRoute}}(row[identityValue])"><i class="glyphicon glyphicon-info-sign"></i></button>
+                            <button type="button" class="btn btn-default" ng-if="uiRouterAvailable === true" ui-sref="{{detailRoute}}({id:row[identityValue]})"><i class="glyphicon glyphicon-info-sign"></i></button>
                             <button type="button" class="btn btn-default" ng-if="uiRouterAvailable === false" ng-click="open(row[identityValue]);"><i class="glyphicon glyphicon-info-sign"></i></button>
                             <button type="button" class="btn btn-default" ng-click="delete([row[identityValue]]);"><i class="glyphicon glyphicon-remove"></i></button>
                         </div>
