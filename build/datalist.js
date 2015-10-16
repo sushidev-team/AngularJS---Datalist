@@ -276,7 +276,7 @@
                       $log.warn('ambersive.datalist: Please define a $scope.open function or use detail-route parameter');
                     };
 
-                    $scope.deleteWarning = function(callback){
+                    $scope.deleteWarning = function(arrIdenityValues,callback){
                         if(callback){
                             callback(true);
                         }
@@ -302,7 +302,7 @@
                             deleteUrl = $scope.restDeleteUrl;
                         }
 
-                        $scope.deleteWarning(function(next){
+                        $scope.deleteWarning(arrIdenityValues,function(next){
                             if(next === false){return;}
                             for(var i= 0;i<amountIDs;i++){
                                 /* jshint ignore:start */
