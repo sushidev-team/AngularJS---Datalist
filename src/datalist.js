@@ -285,15 +285,14 @@
                     $scope.delete = function(arrIdenityValues){
                         var deleteUrl = $scope.restUrl,
                             amountIDs = arrIdenityValues.length,
+                            deleteErrors = 0,
                             deleteFN = function(id){
                                 RestSrv.call({
                                     'method': 'DELETE',
                                     'url':deleteUrl+'/'+id
                                 }, function (result) {
-                                    if(result.status === 200){
-                                        $scope.init();
-                                        arrIdenityValues = [];
-                                        $scope.selectedData = arrIdenityValues;
+                                    if(result.status !== 200){
+                                        deleteErrors++;
                                     }
                                 });
                             };
@@ -304,12 +303,16 @@
 
                         $scope.deleteWarning(arrIdenityValues,function(next){
                             if(next === false){return;}
+                            deleteErrors = 0;
                             for(var i= 0;i<amountIDs;i++){
                                 /* jshint ignore:start */
                                 deleteFN(arrIdenityValues[i])
                                 /* jshint ignore:end */
                                 if(i+1 === amountIDs){
                                     $scope.init();
+                                    $scope.deleteBroadcast(deleteErrors,arrIdenityValues);
+                                    arrIdenityValues = [];
+                                    $scope.selectedData = arrIdenityValues;
                                 }
                             }
                         });
@@ -353,6 +356,13 @@
 
                         $scope.setActionDisabled();
                         $rootScope.$broadcast('update' + $scope.uniqueName.toUpperCase(),data);
+                    };
+
+                    $scope.deleteBroadcast = function(deleteErrors,arrIdenityValues){
+                        $rootScope.$broadcast('delete' + $scope.uniqueName.toUpperCase(),{
+                            'errors':deleteErrors,
+                            'ids':arrIdenityValues
+                        });
                     };
 
                     $scope.$on('return' + $scope.uniqueName.toUpperCase(), function (event, args) {
