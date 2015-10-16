@@ -286,13 +286,16 @@
                         var deleteUrl = $scope.restUrl,
                             amountIDs = arrIdenityValues.length,
                             deleteErrors = 0,
-                            deleteFN = function(id){
+                            deleteFN = function(id,callback){
                                 RestSrv.call({
                                     'method': 'DELETE',
                                     'url':deleteUrl+'/'+id
                                 }, function (result) {
                                     if(result.status !== 200){
                                         deleteErrors++;
+                                    }
+                                    if(callback){
+                                        callback();
                                     }
                                 });
                             };
@@ -302,21 +305,24 @@
                         }
 
                         $scope.deleteWarning(arrIdenityValues,function(next){
+                            var counter = 0;
                             if(next === false){return;}
                             deleteErrors = 0;
+
                             for(var i= 0;i<amountIDs;i++){
+                                counter = counter+1;
                                 /* jshint ignore:start */
-                                deleteFN(arrIdenityValues[i])
+                                deleteFN(arrIdenityValues[i],function(){
+                                    if(counter === amountIDs){
+                                        $scope.init();
+                                        $scope.deleteBroadcast(deleteErrors,arrIdenityValues);
+                                        arrIdenityValues = [];
+                                        $scope.selectedData = arrIdenityValues;
+                                    }
+                                });
                                 /* jshint ignore:end */
-                                if(i+1 === amountIDs){
-                                    $scope.init();
-                                    $scope.deleteBroadcast(deleteErrors,arrIdenityValues);
-                                    arrIdenityValues = [];
-                                    $scope.selectedData = arrIdenityValues;
-                                }
                             }
                         });
-
                     };
 
                     $scope.init = function(){
