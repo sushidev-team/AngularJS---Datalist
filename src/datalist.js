@@ -276,6 +276,12 @@
                       $log.warn('ambersive.datalist: Please define a $scope.open function or use detail-route parameter');
                     };
 
+                    $scope.deleteWarning = function(callback){
+                        if(callback){
+                            callback(true);
+                        }
+                    };
+
                     $scope.delete = function(arrIdenityValues){
                         var deleteUrl = $scope.restUrl,
                             amountIDs = arrIdenityValues.length,
@@ -296,14 +302,17 @@
                             deleteUrl = $scope.restDeleteUrl;
                         }
 
-                        for(var i= 0;i<amountIDs;i++){
-                            /* jshint ignore:start */
-                            deleteFN(arrIdenityValues[i])
-                            /* jshint ignore:end */
-                            if(i+1 === amountIDs){
-                                $scope.init();
+                        $scope.deleteWarning(function(next){
+                            if(next === false){return;}
+                            for(var i= 0;i<amountIDs;i++){
+                                /* jshint ignore:start */
+                                deleteFN(arrIdenityValues[i])
+                                /* jshint ignore:end */
+                                if(i+1 === amountIDs){
+                                    $scope.init();
+                                }
                             }
-                        }
+                        });
 
                     };
 
