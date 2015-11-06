@@ -348,6 +348,7 @@
                             $scope.getData = function () {
                                 $rootScope.$broadcast('get' + $scope.uniqueName.toUpperCase());
                             };
+                            $scope.getData();
                         }
 
                     };
