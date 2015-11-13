@@ -376,6 +376,10 @@
                         parseResult(args);
                     });
 
+                    $scope.$on('update' + $scope.uniqueName.toUpperCase(), function (event, args) {
+                        $scope.getData();
+                    });
+
                     // Load additonal controller
 
                     var counter = 0;
