@@ -98,7 +98,8 @@
                 entriesPerPage:'@',
                 entriesValue:'@',
                 identify:'@',
-                detailRoute:'@'
+                detailRoute:'@',
+                removeQuerystring:'@'
             };
 
             Datalist.controller = ['$rootScope','$scope','$controller','$datalistSettings','RestSrv','HelperSrv',
@@ -116,6 +117,16 @@
                     $scope.actionDisabled       = true;
                     $scope.allSelected          = false;
                     $scope.selectedData         = [];
+
+                    if($scope.removeQuerystring === undefined){
+                        $scope.removeQuerystring = false;
+                    } else {
+                        if($scope.removeQuerystring === 'true' ||$scope.removeQuerystring === true){
+                            $scope.removeQuerystring = true;
+                        } else {
+                            $scope.removeQuerystring = false;
+                        }
+                    }
 
                     if($scope.uniqueName === undefined){
                         $scope.uniqueName = 'datalist';
@@ -287,6 +298,11 @@
                             amountIDs = arrIdenityValues.length,
                             deleteErrors = 0,
                             deleteFN = function(id,callback){
+
+                                if($scope.removeQuerystring === true){
+                                    deleteUrl = deleteUrl.split("?")[0];
+                                }
+
                                 RestSrv.call({
                                     'method': 'DELETE',
                                     'url':deleteUrl+'/'+id
