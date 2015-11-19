@@ -396,6 +396,12 @@
                         $scope.getData();
                     });
 
+                    $scope.$on('request' + $scope.uniqueName.toUpperCase(), function (event, args) {
+                        $rootScope.$broadcast('send' + $scope.uniqueName.toUpperCase(),{
+                            'data':$scope.data
+                        });
+                    });
+
                     // Load additonal controller
 
                     var counter = 0;
