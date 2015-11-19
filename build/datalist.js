@@ -121,7 +121,7 @@
                     if($scope.removeQuerystring === undefined){
                         $scope.removeQuerystring = false;
                     } else {
-                        if($scope.removeQuerystring === 'true' ||$scope.removeQuerystring === true){
+                        if($scope.removeQuerystring === 'true' || $scope.removeQuerystring === true){
                             $scope.removeQuerystring = true;
                         } else {
                             $scope.removeQuerystring = false;
@@ -299,7 +299,7 @@
                             deleteErrors = 0,
                             deleteFN = function(id,callback){
 
-                                if($scope.removeQuerystring === true){
+                                if($scope.removeQuerystring === true || $scope.removeQuerystring === 'true'){
                                     deleteUrl = deleteUrl.split("?")[0];
                                 }
 

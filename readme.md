@@ -1,7 +1,7 @@
 # DATALIST - AngularJS Service
 
 ### Version
-0.0.4.0
+0.0.4.1
 
 ### Installation
 
