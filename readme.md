@@ -1,7 +1,7 @@
 # DATALIST - AngularJS Service
 
 ### Version
-0.0.5.0
+0.0.6.0
 
 ### Installation
 
@@ -49,6 +49,7 @@ The following parameter can be added to the directive:
 * entries-per-page  (optional - standard: 25)
 * detail-route (optional - router-ui state)
 * remove-querystring (optional - removes the querystring for delete function)
+* settings (optional = object)
 
 You can find an example in the demo folder.
 

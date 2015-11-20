@@ -99,7 +99,8 @@
                 entriesValue:'@',
                 identify:'@',
                 detailRoute:'@',
-                removeQuerystring:'@'
+                removeQuerystring:'@',
+                settings:'='
             };
 
             Datalist.controller = ['$rootScope','$scope','$controller','$datalistSettings','RestSrv','HelperSrv',
@@ -117,6 +118,10 @@
                     $scope.actionDisabled       = true;
                     $scope.allSelected          = false;
                     $scope.selectedData         = [];
+
+                    if($scope.settings === undefined){
+                        $scope.settings = {};
+                    }
 
                     if($scope.removeQuerystring === undefined){
                         $scope.removeQuerystring = false;

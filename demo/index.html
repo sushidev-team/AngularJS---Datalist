@@ -17,17 +17,29 @@
                 .config([function () {
 
                 }]).controller('DemoController',function($scope,$log){
+
+
+
+                })
+                .controller('TestController',function($scope,$log){
+
+                    var vm = this;
+
+                    vm.settings = {
+                        'test':1
+                    };
+
                 });
 
     </script>
 
 </head>
 <body ng-app="app">
-    <div class="container">
+    <div class="container" ng-controller="TestController as vm">
         <h1>Datalist</h1>
         <div class="row">
             <div class="col-xs-12">
-                <datalist ctrl="DemoController" rest-url="json/data.json?test=1" remove-querystring="true" detail-route="asdf"></datalist>
+                <datalist ctrl="DemoController" rest-url="json/data.json?test=1" remove-querystring="true" detail-route="asdf" settings="vm.settings"></datalist>
             </div>
         </div>
     </div>
