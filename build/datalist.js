@@ -100,7 +100,7 @@
                 identify:'@',
                 detailRoute:'@',
                 removeQuerystring:'@',
-                settings:'='
+                settings:'=?'
             };
 
             Datalist.controller = ['$rootScope','$scope','$controller','$datalistSettings','RestSrv','HelperSrv',
@@ -122,6 +122,8 @@
                     if($scope.settings === undefined){
                         $scope.settings = {};
                     }
+
+                    $log.log($scope.settings);
 
                     if($scope.removeQuerystring === undefined){
                         $scope.removeQuerystring = false;
